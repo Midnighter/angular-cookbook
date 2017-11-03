@@ -1,3 +1,10 @@
 <ul class="list-group">
-  <li><a class="list-group-item" style="cursor: pointer;"></a></li>
+  <li *ngFor="let item of ingredients"
+    class="list-group-item"
+    style="cursor: pointer;">
+    <app-shopping-item
+      [item]="item"
+      (click)="onClick(item)">
+    </app-shopping-item>
+  </li>
 </ul>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 
 import { Recipe } from '../recipe.model';
 
@@ -8,11 +8,27 @@ import { Recipe } from '../recipe.model';
   styleUrls: ['./recipe-list.component.css']
 })
 export class RecipeListComponent implements OnInit {
-  recipes: Recipe[] = [];
+  @Output() detailFired = new EventEmitter<Recipe>();
+  recipes: Recipe[] = [
+    new Recipe(
+      'Apple Cake',
+      'Make a delicious apple cake.',
+      'http://maxpixel.freegreatpicture.com/static/photo/1x/Food-Sweet-Baked-Italian-Apple-Cake-688119.jpg'
+    ),
+    new Recipe(
+      'Chocolate Cake',
+      'Make a delicious chocolate cake.',
+      'https://pixnio.com/free-images/food-and-drink/desserts-cakes/chocolate-dessert-cake-725x544.jpg'
+    )
+  ];
 
   constructor() { }
 
   ngOnInit() {
+  }
+
+  onDetail(item: Recipe) {
+    this.detailFired.emit(item);
   }
 
 }
