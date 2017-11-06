@@ -16,4 +16,8 @@ export class RecipeListComponent implements OnInit {
     this.recipes = this.recipeService.recipes;
   }
 
+  selectRecipe(idx: number) {
+    this.recipeService.select(idx);
+  }
+
 }

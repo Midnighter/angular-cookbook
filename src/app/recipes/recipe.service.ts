@@ -5,7 +5,7 @@ import {EventEmitter, Output} from '@angular/core';
 // @Injectable()
 
 export class RecipeService {
-  private recipes: Recipe[] = [
+  public recipes: Recipe[] = [
     new Recipe(
       'Apple Cake',
       'Make a delicious apple cake.',
