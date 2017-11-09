@@ -1,5 +1,6 @@
 import {Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
 import {Ingredient} from '../../shared/ingredient.model';
+import {ShoppingListService} from '../shopping-list.service';
 
 @Component({
   selector: 'app-shopping-edit',
@@ -9,26 +10,26 @@ import {Ingredient} from '../../shared/ingredient.model';
 export class ShoppingEditComponent implements OnInit {
   @ViewChild('nameInput') name: ElementRef;
   @ViewChild('amountInput') amount: ElementRef;
-  @Output() addFired = new EventEmitter<Ingredient>();
-  @Output() removeFired = new EventEmitter<void>();
-  @Input() item: Ingredient;
 
-  constructor() { }
+  constructor(private shopService: ShoppingListService) { }
 
   ngOnInit() {
+    this.shopService.ingredientFired.subscribe(
+      (ingredient: Ingredient) => this.onDisplay(ingredient)
+    );
   }
 
   onDisplay(item: Ingredient) {
     console.log(item.name);
-    this.item = item;
     this.name.nativeElement.value = item.name;
     this.amount.nativeElement.value = item.amount;
   }
 
   onAdd() {
-    this.addFired.emit(new Ingredient(
+    this.shopService.addIngredient(new Ingredient(
       this.name.nativeElement.value,
-      this.amount.nativeElement.value));
+      this.amount.nativeElement.value
+    ));
   }
 
   onClear() {
@@ -36,8 +37,8 @@ export class ShoppingEditComponent implements OnInit {
     this.amount.nativeElement.value = '';
   }
 
-  onRemove() {
-    this.removeFired.emit();
-  }
+  // onRemove() {
+  //   this.removeFired.emit();
+  // }
 
 }

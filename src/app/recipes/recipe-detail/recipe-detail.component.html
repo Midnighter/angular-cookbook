@@ -1,22 +1,40 @@
 <div *ngIf="item !== undefined">
-    <div class="pull-left">
-    <h2 class="list-group-item-heading">{{ item.name }}</h2>
-    <p class="list-group-item-text">{{ item.description }}</p>
-    </div>
-    <div class="row">
-      <div class="col-cs-12">
+  <div class="row">
+    <div class="col-cs-12">
+      <div class="pull-left">
+        <h2 class="list-group-item-heading">{{ item.name }}</h2>
+      </div>
+      <div class="pull-right">
         <div class="btn-group" appDropdown>
           <button class="btn btn-primary dropdown-toggle"
-           type="button">Manage Recipe <span class="caret"></span></button>
+                  type="button">Manage Recipe <span class="caret"></span></button>
           <ul class="dropdown-menu">
-            <li><a href="#">To shopping list</a></li>
-            <li><a href="#">Edit Recipe</a></li>
-            <li><a href="#">Delete Recipe</a></li>
+            <li><a (click)="onBuy()" style="cursor: pointer;">To shopping list</a></li>
+            <li><a style="cursor: pointer;">Edit Recipe</a></li>
+            <li><a style="cursor: pointer;">Delete Recipe</a></li>
           </ul>
         </div>
       </div>
     </div>
-    <div class="pull-right">
-    <img src="{{ item.imagePath }}" alt="" class="img-responsive">
+  </div>
+  <div class="col-cs-12">
+    <p class="list-group-item-text">{{ item.description }}</p>
+  </div>
+  <div class="row">
+    <div class="col-cs-12">
+      <hr>
+      <img src="{{ item.imagePath }}" alt="" class="img-responsive">
     </div>
+  </div>
+  <div class="row">
+    <div class="col-cs-12">
+      <hr>
+      <ul class="list-group">
+        <li class="list-group-item"
+            *ngFor="let ing of item.ingredients">
+          {{ ing.name }}: {{ ing.amount }}
+        </li>
+      </ul>
+    </div>
+  </div>
 </div>

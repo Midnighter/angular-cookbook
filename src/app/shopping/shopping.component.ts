@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import {Ingredient} from '../shared/ingredient.model';
 import {ShoppingListComponent} from './shopping-list/shopping-list.component';
 import {ShoppingEditComponent} from './shopping-edit/shopping-edit.component';
+import {ShoppingListService} from './shopping-list.service';
 
 @Component({
   selector: 'app-shopping',

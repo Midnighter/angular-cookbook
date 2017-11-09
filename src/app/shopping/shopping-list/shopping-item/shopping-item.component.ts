@@ -13,5 +13,4 @@ export class ShoppingItemComponent implements OnInit {
 
   ngOnInit() {
   }
-
 }
