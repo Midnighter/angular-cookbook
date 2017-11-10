@@ -5,12 +5,4 @@ import { Component } from '@angular/core';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
-  current = 'recipes';
-
-  onSectionChange(menu: string) {
-    if (menu !== this.current) {
-      this.current = menu;
-    }
-  }
-}
+export class AppComponent { }
