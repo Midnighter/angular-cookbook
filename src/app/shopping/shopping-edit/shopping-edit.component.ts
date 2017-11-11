@@ -1,4 +1,4 @@
-import {Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {Ingredient} from '../../shared/ingredient.model';
 import {ShoppingListService} from '../shopping-list.service';
 
@@ -14,8 +14,8 @@ export class ShoppingEditComponent implements OnInit {
   constructor(private shopService: ShoppingListService) { }
 
   ngOnInit() {
-    this.shopService.ingredientFired.subscribe(
-      (ingredient: Ingredient) => this.onDisplay(ingredient)
+    this.shopService.ingredientChanged.subscribe(
+      (ingredient: Ingredient) => { this.onDisplay(ingredient); }
     );
   }
 
